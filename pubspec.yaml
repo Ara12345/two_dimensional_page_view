@@ -21,11 +21,3 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  plugin:
-    platforms:
-      android:
-      ios:
-      linux:
-      macos:
-      web:
-      windows:
