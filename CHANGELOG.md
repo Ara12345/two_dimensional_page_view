@@ -1,3 +1,8 @@
+## 0.0.3
+
+## Fixed
+* Example project.
+
 ## 0.0.2
 
 ## Changed
