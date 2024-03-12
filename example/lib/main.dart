@@ -100,60 +100,40 @@ class TwoDimensionalPageViewDemo extends StatelessWidget {
           Positioned.fill(
             bottom: 30,
             child: ValueListenableBuilder<StartPosition>(
-                valueListenable: indexChangedNotifier,
-                builder: (context, value, child) {
-                  return Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                          imgList.length,
-                          (xIndex) => Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: List.generate(imgList[xIndex].length,
-                                    (yIndex) {
-                                  bool selected = value.xIndex == xIndex &&
-                                      value.yIndex == yIndex;
+              valueListenable: indexChangedNotifier,
+              builder: (context, value, child) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    imgList.length,
+                    (xIndex) => Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: List.generate(imgList[xIndex].length, (yIndex) {
+                        bool selected =
+                            value.xIndex == xIndex && value.yIndex == yIndex;
 
-                                  return AnimatedContainer(
-                                    duration: const Duration(milliseconds: 200),
-                                    margin: const EdgeInsets.all(2),
-                                    width: 8,
-                                    height: 8,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Colors.white.withOpacity(
-                                        selected ? 1 : 0.4,
-                                      ),
-                                    ),
-                                  );
-                                }),
-                              )));
-                }),
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          margin: const EdgeInsets.all(2),
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white.withOpacity(
+                              selected ? 1 : 0.4,
+                            ),
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                );
+              },
+            ),
           )
         ],
       ),
     );
   }
-}
-
-void a() {
-  PageView();
-  TwoDimensionalPageView(
-    // Called whenever the page in the center of the viewport changes
-    onSwipe: (xIndex, yIndex) {},
-    // Starting position for page view
-    initialPosition: const StartPosition(xIndex: 1, yIndex: 1),
-    // A delegate that provides the children for the [TwoDimensionalPageView]
-    delegate: TwoDimensionalPageBuilderDelegate<String>(
-      // Matrix should have equal sub-list e.g. 2x3, 3x4
-      matrix: [
-        ['1', '2', '3'],
-        ['4', '5', '6'],
-        ['7', '8', '9'],
-      ],
-      builder: (context, vicinity) {
-        return Text('${vicinity.xIndex} ${vicinity.xIndex}');
-      },
-    ),
-  );
 }
